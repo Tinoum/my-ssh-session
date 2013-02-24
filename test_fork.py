@@ -56,20 +56,21 @@ def write_log(pid_ssh, server, connect):
 			my_file.write('\n### Server:' + server + ' with PID:' + pid_ssh + ' \n')
 			my_file.write('Connection: ' + timestmp + '\n')			
 			
-def process(argv):
+def get_server_name(argv):
+	### Get the server name: if there is a "@" the server is the second member 
+	### if not the server is the entire arg
+	
+	if re.search(r"@", argv):
+		return re.sub(r".*@(.*)",r"\1",argv)
+	else:
+		return argv
+			
+def process(server):
 	### This function configures and execute our new ssh session
 	### Mini plan:
 	###		- Get the server name for log and window title
 	###		- Write the log
 	###		- Execute the command
-	
-	
-	# Get the server name: if there is a "@" the server is the second member 
-	#+if not the server is the entire arg
-	if re.search(r"@", argv):
-		server = re.sub(r".*@(.*)",r"\1",argv)
-	else:
-		server = argv
 		
 	#Work in progress: write the log
 	my_pid = str(os.getpid())
@@ -80,7 +81,7 @@ def process(argv):
 	# Execute the command, here we have an only program and an only path. Change will be make...
 	os.execv("/usr/bin/xterm", args)
 	
-def father(child_pid):
+def father(child_pid, server):
 	### This function waits for the child process and finishes the log
 	### Mini plan:
 	###		- Wait method
@@ -98,18 +99,21 @@ def main():
 	# Fork a new process for our session
 	pid = os.fork()
 	
+	# Get the server name
+	server = get_server_name(sys.argv[1])
+	
 	# Switch/case for fork result
 	if pid == -1:
 		# Work in progress: get exception
 		print("Error")
 	elif pid == 0:
 		# We are with the child so we execute our process
-		process(sys.argv[1])
+		process(server)
 		os._exit(0)
 	else:
 		# We are with the parent so we execute the parent process
 		# parent(), work in progress
-		father(pid)
+		father(pid, server)
 
 
 main()
