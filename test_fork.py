@@ -72,7 +72,7 @@ def process(server):
 	###		- Write the log
 	###		- Execute the command
 		
-	#Work in progress: write the log
+	# Write the log for connection
 	my_pid = str(os.getpid())
 	write_log(my_pid, server, True)
 		
@@ -90,11 +90,9 @@ def father(child_pid, server):
 	# Wait for the child ending to avoid zombies
 	os.wait()
 	
-	# Work in progress: write the log when disconnect
+	# Write the log when disconnect
 	pid_str = str(child_pid)
 	write_log(pid_str, server, False)
-	
-	print(child_pid)
 	
 def main():
 	#Work in porgress: Make test on the argv
