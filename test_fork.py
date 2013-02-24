@@ -95,7 +95,10 @@ def father(child_pid, server):
 	write_log(pid_str, server, False)
 	
 def main():
-	#Work in porgress: Make test on the argv
+	#Make test on the argv
+	if len(sys.argv) != 2:
+		sys.stderr.write("Usage: " + sys.argv[0] + " [username@]server\n")
+		sys.exit(1)
 	
 	# Fork a new process for our session
 	pid = os.fork()
