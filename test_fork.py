@@ -91,6 +91,9 @@ def father(child_pid, server):
 	os.wait()
 	
 	# Work in progress: write the log when disconnect
+	pid_str = str(child_pid)
+	write_log(pid_str, server, False)
+	
 	print(child_pid)
 	
 def main():
