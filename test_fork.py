@@ -72,9 +72,11 @@ def process(argv):
 		server = argv
 		
 	#Work in progress: write the log
+	my_pid = str(os.getpid())
+	write_log(my_pid, server, True)
 		
 	# Arguments for the execv command
-	args = ["xterm", "-title", "server: " + server + " pid: " + str(os.getpid())]
+	args = ["xterm", "-title", "server: " + server + " pid: " + my_pid]
 	# Execute the command, here we have an only program and an only path. Change will be make...
 	os.execv("/usr/bin/xterm", args)
 	
