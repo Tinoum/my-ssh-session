@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 
 import os
 import sys
@@ -80,7 +80,7 @@ def process(argv):
 	# Execute the command, here we have an only program and an only path. Change will be make...
 	os.execv("/usr/bin/xterm", args)
 	
-def father():
+def father(child_pid):
 	### This function waits for the child process and finishes the log
 	### Mini plan:
 	###		- Wait method
@@ -90,7 +90,7 @@ def father():
 	os.wait()
 	
 	# Work in progress: write the log when disconnect
-	print("Child killed")
+	print(child_pid)
 	
 def main():
 	#Work in porgress: Make test on the argv
@@ -109,7 +109,7 @@ def main():
 	else:
 		# We are with the parent so we execute the parent process
 		# parent(), work in progress
-		father()
+		father(pid)
 
 
 main()
