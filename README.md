@@ -30,5 +30,5 @@ The basic idea is not so complicated so I think there are many other project lik
   - Raise exceptions to secure a little more
   - Make and parse conf file (with configparser)
   - Enable options (as -t for a XTerm window - without ssh)
-  - Remove Xterm, urxvt...depedency by using terminal class (as terminal.py)
+  - Remove Xterm, urxvt...depedency by using terminal class (as terminal.py or pyte)
   - Find many other cool stuff to add to my fabulous script ^^
