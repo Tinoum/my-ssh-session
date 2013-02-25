@@ -27,6 +27,7 @@ The basic idea is not so complicated so I think there are many other project lik
 
 ### ToDo list
   - Chose between C and Python language ^^
-  - Make and parse conf file
+  - Raise exceptions to secure a little more
+  - Make and parse conf file (with configparser)
   - Enable options (as -t for a XTerm window - without ssh)
   - Find many other cool stuff to add to my fabulous script ^^
